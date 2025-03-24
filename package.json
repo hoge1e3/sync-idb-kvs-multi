@@ -1,0 +1,16 @@
+{
+  "name": "sync-idb-kvs-multi",
+  "version": "1.2.9",
+  "description": "Synchronous IndexedDB Key-Value Store shareable between Workers.",
+  "license": "ISC",
+  "author": "hoge1e3",
+  "type": "module",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "npx http-server -o test/index.html",
+    "build": "npx tsc && npx webpack --mode=development"
+  },
+  "dependencies": {
+    "sync-idb-kvs": "^1.2.9"
+  }
+}
