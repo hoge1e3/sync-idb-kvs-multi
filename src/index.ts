@@ -46,6 +46,7 @@ export class MultiSyncIDBStorage implements IStorage {
 
     setItem(key: string, value: string): void {
         this.storage.setItem(key, value);
+        //console.log("Send idb message set", key,value);
 
         // 他のワーカーに変更を通知
         this.channel.postMessage({ type: "set", key, value });
@@ -55,6 +56,7 @@ export class MultiSyncIDBStorage implements IStorage {
     removeItem(key: string): void {
         this.storage.removeItem(key);
         // 他のワーカーに削除を通知
+        //console.log("Send idb message remove", key);
         this.channel.postMessage({ type: "remove", key });
         //this.changeEventTrait.notifyListeners(key, null); bypassed
     }

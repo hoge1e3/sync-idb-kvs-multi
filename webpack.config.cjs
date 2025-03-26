@@ -1,7 +1,7 @@
 const entries={
-  esm: './src/index.ts',
-  worker: './test/worker.ts',
-  test: "./test/test.ts",
+  esm: './src/index.js',
+  worker: './test/worker.js',
+  test: "./test/test.js",
 };
 const outputs={
   esm: {
@@ -37,8 +37,8 @@ module.exports = (env,argv)=>["esm","test","worker"].map((type)=>({
                 test: /\.ts$/,
                 // TypeScript をコンパイルする
                 use: {
-        		  	  loader:'ts-loader',
-        		    },
+        			loader:'ts-loader',
+        		},
             },*/
         ],
         parser: {
@@ -50,7 +50,7 @@ module.exports = (env,argv)=>["esm","test","worker"].map((type)=>({
     resolve: {
         // 拡張子を配列で指定
         extensions: [
-            '.ts', '.js',
+            '.js',
         ],
     },
     plugins: [
