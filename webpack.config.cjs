@@ -32,17 +32,14 @@ module.exports = (env,argv)=>["esm","test","worker"].map((type)=>({
     output: outputs[type],
     module: {
         rules: [
-            {
+            /*{
                 // 拡張子 .ts の場合
                 test: /\.ts$/,
                 // TypeScript をコンパイルする
                 use: {
-        			loader:'ts-loader',
-        			/*options:{
-        				plugins: ['@babel/plugin-syntax-dynamic-import'],
-        			},*/
-        		},
-            },
+        		  	  loader:'ts-loader',
+        		    },
+            },*/
         ],
         parser: {
           javascript: {

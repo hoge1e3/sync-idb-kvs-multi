@@ -1,7 +1,10 @@
 import { IStorage, SyncIDBStorage } from "sync-idb-kvs";
 import { ChangeEvent, ChangeEventTrait } from "./changeEvent.js";
+//import {BroadcastChannel} from "worker_threads";
+export type BroadCastEvent=MessageEvent;
 export class MultiSyncIDBStorage implements IStorage {
     private storage: SyncIDBStorage;
+    //TS2749: 'BroadcastChannel' refers to a value, but is being used as a type here. Did you mean 'typeof BroadcastChannel'?
     private channel: BroadcastChannel;
     channelName:string;
     changeEventTrait=new ChangeEventTrait(this);
@@ -25,7 +28,7 @@ export class MultiSyncIDBStorage implements IStorage {
         this.channel = new BroadcastChannel(this.channelName);
 
         // 他のワーカーからの更新通知を受け取る
-        this.channel.onmessage = async (event) => {
+        this.channel.onmessage = async (event:BroadCastEvent) => {
             const { type, key, value } = event.data;
             if (type === "set") {
                 this.storage.memoryCache[key] = value;
