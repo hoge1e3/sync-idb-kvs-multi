@@ -14,5 +14,10 @@
   },
   "dependencies": {
     "sync-idb-kvs": "^1.2.9"
-  }
+  },
+  "files": [
+    "tsconfig.json",
+    "dist",
+    "src"
+  ]
 }
