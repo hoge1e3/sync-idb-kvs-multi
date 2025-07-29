@@ -13,7 +13,7 @@
     "webpack": "npx webpack --mode=production"
   },
   "dependencies": {
-    "sync-idb-kvs": "^1.2.9"
+    "sync-idb-kvs": "^1.4.5"
   },
   "files": [
     "tsconfig.json",
