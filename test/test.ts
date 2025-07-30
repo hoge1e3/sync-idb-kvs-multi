@@ -1,4 +1,4 @@
-import { MultiSyncIDBStorage } from 'sync-idb-kvs-multi';
+import { MultiSyncIDBStorage } from '../src/index.js';
 const assert={
     equal(a:any,b:any){
         if(a!==b){
