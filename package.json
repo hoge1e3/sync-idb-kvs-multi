@@ -1,6 +1,6 @@
 {
   "name": "sync-idb-kvs-multi",
-  "version": "1.4.4",
+  "version": "1.4.6",
   "description": "Synchronous IndexedDB Key-Value Store shareable between Workers.",
   "license": "ISC",
   "author": "hoge1e3",
@@ -13,7 +13,11 @@
     "webpack": "npx webpack --mode=production"
   },
   "dependencies": {
-    "sync-idb-kvs": "^1.2.9"
+    "sync-idb-kvs": "^1.4.6"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5",
+    "@types/web": "^0.0.175"
   },
   "files": [
     "tsconfig.json",
