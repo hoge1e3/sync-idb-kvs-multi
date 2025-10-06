@@ -13,7 +13,7 @@
     "webpack": "npx webpack --mode=production"
   },
   "dependencies": {
-    "sync-idb-kvs": "^1.5.1"
+    "sync-idb-kvs": "^1.5.2"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
