@@ -16,7 +16,7 @@
     "sync-idb-kvs": "^1.5.1"
   },
   "devDependencies": {
-    "typescript": "^4.5.5",
+    "typescript": "^5.7.2",
     "@types/web": "^0.0.175"
   },
   "files": [
