@@ -19,8 +19,8 @@ export class MultiSyncIDBStorage implements IStorage {
         const s=await SyncIDBStorage.create(dbName, storeName);
         return new MultiSyncIDBStorage(s);
     }
-    get uncommited(){
-        return this.storage.uncommited;
+    async waitForCommit(){
+        return await this.storage.waitForCommit();
     }
     constructor(storage: SyncIDBStorage) {
         this.storage = storage;
