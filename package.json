@@ -16,8 +16,8 @@
     "sync-idb-kvs": "^1.5.3"
   },
   "devDependencies": {
-    "typescript": "^5.7.2",
-    "@types/web": "^0.0.175"
+    "typescript": "^5.8.3",
+    "@types/web": "^0.0.278"
   },
   "files": [
     "tsconfig.json",
