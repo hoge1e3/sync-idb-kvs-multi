@@ -24,7 +24,7 @@ export class MultiSyncIDBStorage implements IStorage {
     }
     constructor(storage: SyncIDBStorage) {
         this.storage = storage;
-        this.channelName=storage.dbName+"/"+storage.storeName;
+        this.channelName=storage.channelName;//dbName+"/"+storage.storeName;
         this.channel = new BroadcastChannel(this.channelName);
 
         // 他のワーカーからの更新通知を受け取る
