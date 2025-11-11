@@ -7,7 +7,8 @@ const assert={
     }
 };
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
-const storage = await MultiSyncIDBStorage.create();
+const storage = await MultiSyncIDBStorage.create(
+  "test",{});
 (globalThis as any).storage = storage;
 let theValue;
 const reg=/value\d+\.\d+/;

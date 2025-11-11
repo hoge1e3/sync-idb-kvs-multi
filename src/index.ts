@@ -1,4 +1,4 @@
-import { IStorage, SyncIDBStorage } from "sync-idb-kvs";
+import { IStorage, SyncIDBStorage,SyncIDBStorageOptions } from "sync-idb-kvs";
 import { ChangeEvent, ChangeEventTrait } from "./changeEvent.js";
 //import {BroadcastChannel} from "worker_threads";
 export type BroadCastEvent=MessageEvent;
@@ -15,8 +15,10 @@ export class MultiSyncIDBStorage implements IStorage {
     removeEventListener(callback: (e: ChangeEvent) => void): void {
         this.changeEventTrait.removeEventListener(callback);
     }
-    static async create(dbName = "SyncStorageDB", storeName = "kvStore"): Promise<MultiSyncIDBStorage> {
-        const s=await SyncIDBStorage.create(dbName, storeName);
+    static async create(dbName:string, 
+      initialData:Record<string,string>,
+      opt={} as SyncIDBStorageOptions): Promise<MultiSyncIDBStorage> {
+        const s=await SyncIDBStorage.create(dbName, initialData,opt);
         return new MultiSyncIDBStorage(s);
     }
     async waitForCommit(){
