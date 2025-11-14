@@ -1,6 +1,6 @@
 {
   "name": "sync-idb-kvs-multi",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Synchronous IndexedDB Key-Value Store shareable between Workers.",
   "license": "ISC",
   "author": "hoge1e3",
