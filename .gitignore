@@ -1,4 +1,4 @@
-﻿*.js
+*.js
 *.js.map
 *.d.ts
 .tsbuildinfo
