@@ -3,6 +3,7 @@ import { ChangeEvent, ChangeEventTrait } from "./changeEvent.js";
 //import {BroadcastChannel} from "worker_threads";
 export type BroadCastEvent=MessageEvent;
 export class MultiSyncIDBStorage implements IStorage {
+    storageType: string="idb";
     private storage: SyncIDBStorage;
     //TS2749: 'BroadcastChannel' refers to a value, but is being used as a type here. Did you mean 'typeof BroadcastChannel'?
     private channel: BroadcastChannel;
