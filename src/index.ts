@@ -31,11 +31,11 @@ export class MultiSyncIDBStorage implements IStorage {
         this.channel = new BroadcastChannel(this.channelName);
         storage.getLoadingPromise(true).
         then(()=>{
-          //console.log("BroadcastChannel activated",this.channelName)
+          console.log("BroadcastChannel activated",this.channelName)
           // 他のワーカーからの更新通知を受け取る
           this.channel.onmessage = async (event:BroadCastEvent) => {
             const { type, key, value } = event.data;
-            console.log("BroadcastChannel mesg",this.channelName,key);
+            //console.log("BroadcastChannel mesg",this.channelName,key);
             if (type === "set") {
                 this.storage.memoryCache[key] = value;
                 this.changeEventTrait.notifyListeners(key, value);
