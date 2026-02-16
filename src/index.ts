@@ -16,18 +16,18 @@ export type BroadCastEvent<T> = MessageEvent<
 // T is the type of value
 export class MultiSyncIDBStorage<T> implements IStorage<T> {
   storageType: string = "idb";
-    private storage: SyncIDBStorage<T>;
+  private storage: SyncIDBStorage<T>;
   private channel: BroadcastChannel;
   channelName: string;
-    changeEventTrait=new ChangeEventTrait<T>(this);
+  changeEventTrait=new ChangeEventTrait<T>(this);
   // Only receives updates from other workers
-    addEventListener(type: "change", callback: (e: ChangeEvent<T>) => void): void {
+  addEventListener(type: "change", callback: (e: ChangeEvent<T>) => void): void {
     this.changeEventTrait.addEventListener(type, callback);
   }
-    removeEventListener(callback: (e: ChangeEvent<T>)=>void): void {
+  removeEventListener(callback: (e: ChangeEvent<T>)=>void): void {
     this.changeEventTrait.removeEventListener(callback);
   }
-    static async create<T>(dbName:string, 
+  static async create<T>(dbName:string, 
       initialData:Record<string, T>,
       opt={} as SyncIDBStorageOptions): Promise<MultiSyncIDBStorage<T>> {
         const s=await SyncIDBStorage.create<T>(dbName, initialData,opt);
@@ -36,16 +36,16 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
   async waitForCommit() {
     return await this.storage.waitForCommit();
   }
-    constructor(storage: SyncIDBStorage<T>) {
+  constructor(storage: SyncIDBStorage<T>) {
     this.storage = storage;
-        this.channelName=storage.channelName;
+    this.channelName=storage.channelName;
     this.channel = new BroadcastChannel(this.channelName);
 
-      storage.getLoadingPromise(true).
-      then(() => {
-          console.log("BroadcastChannel activated",this.channelName)
+    storage.getLoadingPromise(true).
+    then(() => {
+      console.log("BroadcastChannel activated",this.channelName)
       // 他のワーカーからの更新通知を受け取る
-          this.channel.onmessage = (event:BroadCastEvent<T>) => {
+      this.channel.onmessage = (event:BroadCastEvent<T>) => {
         if (event.data.type === "set") {
           const { type, key, value } = event.data;
           this.storage.memoryCache[key] = value;
@@ -55,14 +55,14 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
           delete this.storage.memoryCache[key];
           this.changeEventTrait.notifyListeners(key, null);
         }
-      }});
+    }});
   }
 
-    getItem(key: string): T | null {
+  getItem(key: string): T | null {
     return this.storage.getItem(key);
   }
 
-    setItem(key: string, value: T): void {
+  setItem(key: string, value: T): void {
     this.storage.setItem(key, value);
     this.channel.postMessage({ type: "set", key, value });
   }
@@ -80,7 +80,7 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
     return this.storage.keys();
   }
 
-    async reload(key: string): Promise<T | null> {
+  async reload(key: string): Promise<T | null> {
     return this.storage.reload(key);
   }
 }
