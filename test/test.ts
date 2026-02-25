@@ -7,7 +7,7 @@ const assert={
     }
 };
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
-const storage = await MultiSyncIDBStorage.create(
+const storage = await MultiSyncIDBStorage.create<string>(
   "test",{});
 (globalThis as any).storage = storage;
 let theValue;
