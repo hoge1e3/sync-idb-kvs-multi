@@ -48,12 +48,14 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
       this.channel.onmessage = (event:BroadCastEvent<T>) => {
         if (event.data.type === "set") {
           const { type, key, value } = event.data;
+          const oldValue=this.storage.memoryCache[key];
           this.storage.memoryCache[key] = value;
-          this.changeEventTrait.notifyListeners(key, value ?? null);
+          this.changeEventTrait.notifyListeners(key, value ?? null, oldValue ?? null);
         } else if (event.data.type === "remove") {
           const { type, key} = event.data;
+          const oldValue=this.storage.memoryCache[key];
           delete this.storage.memoryCache[key];
-          this.changeEventTrait.notifyListeners(key, null);
+          this.changeEventTrait.notifyListeners(key, null, oldValue ?? null);
         }
     }});
   }
