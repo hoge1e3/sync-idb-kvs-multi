@@ -41,7 +41,7 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
     this.channelName=storage.channelName;
     this.channel = new BroadcastChannel(this.channelName);
 
-    storage.getLoadingPromise(true).
+    storage.readyPromise().
     then(() => {
       console.log("BroadcastChannel activated",this.channelName)
       // 他のワーカーからの更新通知を受け取る
@@ -54,7 +54,7 @@ export class MultiSyncIDBStorage<T> implements IStorage<T> {
         } else if (event.data.type === "remove") {
           const { type, key} = event.data;
           const oldValue=this.storage.memoryCache[key];
-          delete this.storage.memoryCache[key];
+          this.storage.memoryCache[key]=null;
           this.changeEventTrait.notifyListeners(key, null, oldValue ?? null);
         }
     }});
